@@ -1,0 +1,219 @@
+/* ===== KAWAII PINK THEME — GLOBAL STYLES ===== */
+
+:root {
+  --pink-100: #fff0f5;
+  --pink-200: #ffe4ef;
+  --pink-300: #ffb3d1;
+  --pink-400: #ff80b3;
+  --pink-500: #ff4d94;
+  --pink-600: #e6007a;
+  --hot-pink: #ff69b4;
+  --deep-pink: #ff1493;
+  --lilac: #d4a5e0;
+  --lilac-light: #f0d6f5;
+  --mint: #b5ead7;
+  --yellow-soft: #fff3b0;
+  --text-dark: #3d2c4e;
+  --text-mid: #6b4f7c;
+  --text-light: #9b7fb0;
+  --white: #ffffff;
+  --card-bg: #fffafd;
+  --shadow-pink: 0 4px 20px rgba(255, 105, 180, 0.2);
+  --shadow-pink-hover: 0 8px 30px rgba(255, 105, 180, 0.4);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--pink-100);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--pink-200); }
+::-webkit-scrollbar-thumb {
+  background: var(--pink-400);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--hot-pink); }
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--pink-300);
+  color: var(--text-dark);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+/* ===== SECTION WRAPPER ===== */
+.section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hot-pink), var(--lilac));
+  border-radius: var(--radius-full);
+  margin: 8px auto 0;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 48px;
+}
+
+/* ===== KAWAII BADGE ===== */
+.kawaii-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--pink-200), var(--lilac-light));
+  color: var(--text-mid);
+  border: 2px solid var(--pink-300);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--deep-pink));
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 12px 28px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+  transition: all 0.25s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(255, 105, 180, 0.55);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--hot-pink);
+  border: 2px solid var(--hot-pink);
+  border-radius: var(--radius-full);
+  padding: 11px 28px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-outline:hover {
+  background: var(--pink-200);
+  transform: translateY(-2px);
+}
+
+/* ===== CARD ===== */
+.card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--pink-200);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pink);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-pink-hover);
+  border-color: var(--pink-300);
+}
+
+/* ===== FLOATING SAKURA ===== */
+.sakura-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+@keyframes sakura-fall {
+  0%   { transform: translateY(-60px) rotate(0deg); opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes sway {
+  0%   { margin-left: 0; }
+  50%  { margin-left: 40px; }
+  100% { margin-left: -20px; }
+}
+
+.petal {
+  position: absolute;
+  top: -60px;
+  font-size: 1.2rem;
+  animation: sakura-fall linear infinite, sway ease-in-out infinite;
+  opacity: 0.7;
+}
+
+/* ===== FADE IN ANIMATION ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .section { padding: 60px 16px; }
+}

@@ -1,0 +1,74 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about__text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+}
+
+.about__text strong {
+  color: var(--hot-pink);
+  font-weight: 700;
+}
+
+.about__cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.about__highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about__highlight-card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about__highlight-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.about__highlight-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.about__highlight-value {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; gap: 40px; }
+  .about__cta { justify-content: center; }
+  .about__text { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .about__highlights { grid-template-columns: 1fr; }
+}
