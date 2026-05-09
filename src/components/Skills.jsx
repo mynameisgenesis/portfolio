@@ -5,12 +5,12 @@ const skillGroups = [
     category: 'Frontend',
     icon: '🎨',
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'Vue.js', level: 90 },
-      { name: 'JavaScript', level: 95 },
+      { name: 'React', level: 75 },
+      { name: 'Vue.js', level: 60 },
+      { name: 'JavaScript', level: 85 },
       { name: 'HTML / CSS', level: 95 },
-      { name: 'React Native', level: 80 },
-      { name: 'Angular', level: 70 },
+      { name: 'React Native', level: 71 },
+      { name: 'Angular', level: 37 },
     ],
   },
   {
@@ -28,10 +28,10 @@ const skillGroups = [
     category: 'Data & DB',
     icon: '🗄️',
     skills: [
-      { name: 'PostgreSQL', level: 82 },
-      { name: 'MySQL', level: 85 },
+      { name: 'PostgreSQL', level: 56 },
+      { name: 'MySQL', level: 67 },
       { name: 'MongoDB', level: 78 },
-      { name: 'SQL Server', level: 75 },
+      { name: 'SQL Server', level: 60 },
     ],
   },
   {
@@ -39,8 +39,8 @@ const skillGroups = [
     icon: '🚀',
     skills: [
       { name: 'Docker', level: 85 },
-      { name: 'Kubernetes', level: 78 },
-      { name: 'OpenShift', level: 75 },
+      { name: 'Kubernetes', level: 41 },
+      { name: 'OpenShift', level: 38 },
       { name: 'Git / CI-CD', level: 90 },
       { name: 'Jira / Confluence', level: 88 },
     ],
