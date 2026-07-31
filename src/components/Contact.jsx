@@ -2,18 +2,43 @@ import { useState } from 'react'
 import './Contact.css'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+    website: '',
+  })
   const [sent, setSent] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Opens the user's mail client with pre-filled fields
-    const mailto = `mailto:genesisbelmonte4@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`
-    window.location.href = mailto
-    setSent(true)
+    setError('')
+    setIsSending(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const result = await response.json().catch(() => ({}))
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Your message could not be sent.')
+      }
+
+      setSent(true)
+      setForm({ name: '', email: '', message: '', website: '' })
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setIsSending(false)
+    }
   }
 
   return (
@@ -71,14 +96,27 @@ export default function Contact() {
               <div className="contact__success card">
                 <span className="contact__success-icon">🎉</span>
                 <h3>Message sent!</h3>
-                <p>Your mail client should be open. Talk soon! 💕</p>
+                <p>Thanks for reaching out. Talk soon! 💕</p>
                 <button className="btn-primary" onClick={() => setSent(false)}>
                   Send another
                 </button>
               </div>
             ) : (
-              <form className="contact__form card" onSubmit={handleSubmit} noValidate>
+              <form className="contact__form card" onSubmit={handleSubmit}>
                 <h3 className="contact__form-title">Send a message 💬</h3>
+
+                <div className="contact__honeypot" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex="-1"
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={handleChange}
+                  />
+                </div>
 
                 <div className="contact__field">
                   <label htmlFor="name">Your name</label>
@@ -90,6 +128,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     required
+                    maxLength={100}
                   />
                 </div>
 
@@ -103,6 +142,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={handleChange}
                     required
+                    maxLength={254}
                   />
                 </div>
 
@@ -116,11 +156,22 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     required
+                    maxLength={5000}
                   />
                 </div>
 
-                <button type="submit" className="btn-primary contact__submit">
-                  Send Message 💌
+                {error && (
+                  <p className="contact__error" role="alert">
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn-primary contact__submit"
+                  disabled={isSending}
+                >
+                  {isSending ? 'Sending…' : 'Send Message 💌'}
                 </button>
               </form>
             )}
