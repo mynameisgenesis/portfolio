@@ -1,0 +1,5 @@
+/* Ensure sections stack cleanly above the sakura layer */
+main {
+  position: relative;
+  z-index: 1;
+}

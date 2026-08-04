@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import './Contact.css'
 
 export default function Contact() {
@@ -12,10 +12,10 @@ export default function Contact() {
   const [isSending, setIsSending] = useState(false)
   const [error, setError] = useState('')
 
-  const handleChange = (e) =>
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
     setIsSending(true)
@@ -26,7 +26,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-      const result = await response.json().catch(() => ({}))
+      const result: { error?: string } = await response.json().catch(() => ({}))
 
       if (!response.ok) {
         throw new Error(result.error || 'Your message could not be sent.')
@@ -35,7 +35,11 @@ export default function Contact() {
       setSent(true)
       setForm({ name: '', email: '', message: '', website: '' })
     } catch (submitError) {
-      setError(submitError.message)
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : 'Your message could not be sent.',
+      )
     } finally {
       setIsSending(false)
     }
@@ -111,7 +115,7 @@ export default function Contact() {
                     id="website"
                     name="website"
                     type="text"
-                    tabIndex="-1"
+                    tabIndex={-1}
                     autoComplete="off"
                     value={form.website}
                     onChange={handleChange}

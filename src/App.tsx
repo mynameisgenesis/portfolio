@@ -13,7 +13,7 @@ import './App.css'
 const PETALS = ['🌸', '🌺', '✿', '❀', '🌷']
 
 function SakuraBg() {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = containerRef.current

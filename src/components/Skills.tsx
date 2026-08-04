@@ -1,4 +1,10 @@
+import type { CSSProperties } from 'react'
 import './Skills.css'
+
+interface SkillBarProps {
+  name: string
+  level: number
+}
 
 const skillGroups = [
   {
@@ -47,7 +53,7 @@ const skillGroups = [
   },
 ]
 
-function SkillBar({ name, level }) {
+function SkillBar({ name, level }: SkillBarProps) {
   return (
     <div className="skill-bar">
       <div className="skill-bar__header">
@@ -57,7 +63,7 @@ function SkillBar({ name, level }) {
       <div className="skill-bar__track">
         <div
           className="skill-bar__fill"
-          style={{ '--fill-width': `${level}%` }}
+          style={{ '--fill-width': `${level}%` } as CSSProperties}
         />
       </div>
     </div>

@@ -97,7 +97,7 @@ npm run preview  # Preview the production build locally
 
 ```text
 src/                          React portfolio UI
-src/components/Contact.jsx   Contact form client
+src/components/Contact.tsx   Contact form client
 netlify/functions/contact.js SMTP-backed contact endpoint
 netlify.toml                  Netlify build and function configuration
 .env.example                 Environment variable template
